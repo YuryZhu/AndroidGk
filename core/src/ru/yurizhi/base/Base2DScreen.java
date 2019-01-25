@@ -11,9 +11,11 @@ import com.badlogic.gdx.math.Vector2;
 
 import ru.yurizhi.math.MatrixUtils;
 import ru.yurizhi.math.Rect;
+import ru.yurizhi.sprite.menu.ScaledTouchUpButton;
+import ru.yurizhi.sprite.menu.StartButton;
 
 
-public class Base2DScreen implements Screen, InputProcessor {
+public abstract class Base2DScreen implements Screen, InputProcessor {
 
     protected SpriteBatch batch;
 
@@ -33,7 +35,7 @@ public class Base2DScreen implements Screen, InputProcessor {
         batch = new SpriteBatch();
         this.screenBounds = new Rect();
         this.worldBounds = new Rect();
-        this.glBounds = new Rect(0,0, 1f, 1f);
+        this.glBounds = new Rect(0, 0, 1f, 1f);
         this.worldToGl = new Matrix4();
         this.screenToWorlds = new Matrix3();
         touch = new Vector2();
@@ -58,6 +60,11 @@ public class Base2DScreen implements Screen, InputProcessor {
         MatrixUtils.calcTransitionMatrix(worldToGl, worldBounds, glBounds);
         batch.setProjectionMatrix(worldToGl);
         MatrixUtils.calcTransitionMatrix(screenToWorlds, screenBounds, worldBounds);
+        resize(worldBounds);
+    }
+
+    public void resize(Rect worldBounds) {
+
     }
 
     @Override
