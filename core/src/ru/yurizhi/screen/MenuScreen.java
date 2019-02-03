@@ -1,5 +1,6 @@
 package ru.yurizhi.screen;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
@@ -12,7 +13,6 @@ import ru.yurizhi.math.Rect;
 import ru.yurizhi.sprite.Background;
 import ru.yurizhi.sprite.Star;
 import ru.yurizhi.sprite.menu.ExitButton;
-import ru.yurizhi.sprite.menu.ScaledTouchUpButton;
 import ru.yurizhi.sprite.menu.StartButton;
 
 
@@ -23,12 +23,11 @@ public class MenuScreen extends Base2DScreen {
     boolean upMove;
     boolean downMove;
 
-    private static final float V_LEN = 2.5f;
 
     Texture img;
     TextureRegion region;
 
-
+    private Game game;
     private float speed;
 
     Vector2 pos;
@@ -42,22 +41,22 @@ public class MenuScreen extends Base2DScreen {
     private Star star[];
     private StartButton startButton;
     private ExitButton exitButton;
-    private ScaledTouchUpButton scaledTouchUpButton;
 
+    public MenuScreen(Game game) {
+        this.game = game;
+    }
 
     @Override
     public void show() {
         super.show();
         bg = new Texture("textures/bat.jpg");
         background = new Background(new TextureRegion(bg));
-        atlas = new TextureAtlas("textures/menuAtlas.tpack");
+        atlas = new TextureAtlas("textures/mainAtlas.tpack");
         atlasBut = new TextureAtlas("textures/batButton.pack");
         img = new Texture("textures/justice_league.png");
         region = new TextureRegion(img, 500, 0, 160, 170);
-        pos = new Vector2(-0.385f, -0.5f);
-        v = new Vector2(0.002f, 0.002f);
 
-        startButton = new StartButton(atlasBut);
+        startButton = new StartButton(atlasBut, game);
         exitButton = new ExitButton(atlasBut);
         star = new Star[32];
         for (int i = 0; i < star.length; i++) {
@@ -86,7 +85,6 @@ public class MenuScreen extends Base2DScreen {
         background.draw(batch);
         startButton.draw(batch);
         exitButton.draw(batch);
-        batch.draw(region, pos.x, pos.y, 0.2f, 0.2f);
         updateMotion();
         for (int i = 0; i < star.length; i++) {
             star[i].draw(batch);
@@ -98,6 +96,7 @@ public class MenuScreen extends Base2DScreen {
     public void resize(Rect worldBounds) {
         background.resize(worldBounds);
         startButton.resize(worldBounds);
+        exitButton.resize(worldBounds);
         for (int i = 0; i < star.length; i++) {
             star[i].resize(worldBounds);
         }
@@ -107,29 +106,21 @@ public class MenuScreen extends Base2DScreen {
     public void dispose() {
         bg.dispose();
         atlas.dispose();
-        atlasBut.dispose();
         super.dispose();
     }
 
     @Override
     public boolean touchDown(Vector2 touch, int pointer) {
-        if (startButton.isMe(touch)) {
-            return startButton.touchDown(touch, pointer);
-        } else if (exitButton.isMe(touch)) {
-            return exitButton.touchDown(touch, pointer);
-        }
-        return false;
+        exitButton.touchDown(touch, pointer);
+        startButton.touchDown(touch, pointer);
+        return super.touchDown(touch, pointer);
     }
 
     @Override
     public boolean touchUp(Vector2 touch, int pointer) {
-        if (startButton.isMe(touch)) {
-            return startButton.touchUp(touch, pointer);
-        } else if(exitButton.isMe(touch)) {
-            exitButton.action();
-            return exitButton.touchUp(touch, pointer);
-        }
-        return false;
+        exitButton.touchUp(touch, pointer);
+        startButton.touchUp(touch, pointer);
+        return super.touchUp(touch, pointer);
     }
 
 
