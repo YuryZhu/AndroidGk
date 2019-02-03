@@ -3,23 +3,44 @@ batButton.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+batman-vs-superman
+  rotate: false
+  xy: 1, 297
+  size: 215, 700
+  orig: 215, 700
+  offset: 0, 0
+  index: 1
 batman_exit1
   rotate: false
-  xy: 1, 53
+  xy: 218, 661
   size: 438, 336
   orig: 438, 336
   offset: 0, 0
   index: -1
 batman_play
   rotate: false
-  xy: 441, 194
+  xy: 218, 464
   size: 400, 195
   orig: 400, 195
   offset: 0, 0
   index: -1
-bat
+batman-vs-superman_dam
   rotate: false
   xy: 1, 1
+  size: 215, 294
+  orig: 215, 294
+  offset: 0, 0
+  index: -1
+Bat-Silhouette
+  rotate: false
+  xy: 658, 869
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+bat
+  rotate: false
+  xy: 218, 412
   size: 100, 50
   orig: 100, 50
   offset: 0, 0

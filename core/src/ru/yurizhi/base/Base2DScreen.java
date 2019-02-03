@@ -1,7 +1,6 @@
 package ru.yurizhi.base;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,16 +10,13 @@ import com.badlogic.gdx.math.Vector2;
 
 import ru.yurizhi.math.MatrixUtils;
 import ru.yurizhi.math.Rect;
-import ru.yurizhi.sprite.menu.ScaledTouchUpButton;
-import ru.yurizhi.sprite.menu.StartButton;
-
 
 public abstract class Base2DScreen implements Screen, InputProcessor {
 
     protected SpriteBatch batch;
 
     private Rect screenBounds; // границы области рисования в пикселях
-    private Rect worldBounds; // границы проекции мировых координат
+    protected Rect worldBounds; // границы проекции мировых координат
     private Rect glBounds; // дефолтные границы проекции мир - gl
 
     private Matrix4 worldToGl;
@@ -35,7 +31,7 @@ public abstract class Base2DScreen implements Screen, InputProcessor {
         batch = new SpriteBatch();
         this.screenBounds = new Rect();
         this.worldBounds = new Rect();
-        this.glBounds = new Rect(0, 0, 1f, 1f);
+        this.glBounds = new Rect(0,0, 1f, 1f);
         this.worldToGl = new Matrix4();
         this.screenToWorlds = new Matrix3();
         touch = new Vector2();
