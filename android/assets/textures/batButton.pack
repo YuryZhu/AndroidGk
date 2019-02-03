@@ -1,0 +1,26 @@
+
+batButton.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+batman_exit1
+  rotate: false
+  xy: 1, 53
+  size: 438, 336
+  orig: 438, 336
+  offset: 0, 0
+  index: -1
+batman_play
+  rotate: false
+  xy: 441, 194
+  size: 400, 195
+  orig: 400, 195
+  offset: 0, 0
+  index: -1
+bat
+  rotate: false
+  xy: 1, 1
+  size: 100, 50
+  orig: 100, 50
+  offset: 0, 0
+  index: -1
