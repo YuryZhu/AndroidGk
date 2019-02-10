@@ -3,25 +3,34 @@ package ru.yurizhi.sprite.game;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import ru.yurizhi.math.Rect;
 import ru.yurizhi.pool.BulletPool;
 
 public class Enemy extends Ship {
 
     private Vector2 v0 = new Vector2();
+    private MainShip mainShip;
 
-    public Enemy(Sound shootSound, BulletPool bulletPool) {
+    public Enemy(Sound shootSound, BulletPool bulletPool, Rect worldBounds, MainShip mainShip) {
         super();
         this.shootSound = shootSound;
         this.bulletPool = bulletPool;
         this.v.set(v0);
         this.bulletV = new Vector2();
+        this.mainShip = mainShip;
+        this.worldBounds = worldBounds;
     }
 
     @Override
     public void update(float delta) {
         super.update(delta);
         this.pos.mulAdd(v, delta);
+        shoot();
+        if (isOutside(worldBounds)) {
+            destroy();
+        }
     }
+
 
     public void set(
             TextureRegion[] regions,

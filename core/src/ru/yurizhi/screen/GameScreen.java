@@ -29,7 +29,7 @@ public class GameScreen extends Base2DScreen {
     private MainShip mainShip;
 
     public Vector2 velocity = new Vector2();
-    public final Vector2 gravity = new Vector2(0,-0.12f);//
+    public final Vector2 gravity = new Vector2(0, -0.12f);//
 
     private BulletPool bulletPool;
     private ExplosionPool explosionPool;
@@ -53,7 +53,7 @@ public class GameScreen extends Base2DScreen {
         atlasBut = new TextureAtlas("textures/batButton.pack");
         bulletPool = new BulletPool();
         explosionPool = new ExplosionPool(atlas);
-        enemyPool = new EnemyPool(bulletPool);
+        enemyPool = new EnemyPool(bulletPool, worldBounds, mainShip);
         mainShip = new MainShip(atlasBut, bulletPool);
         enemyEmitter = new EnemyEmitter(atlas, enemyPool, worldBounds);
     }
