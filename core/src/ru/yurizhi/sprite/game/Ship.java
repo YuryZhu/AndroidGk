@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import ru.yurizhi.base.Sprite;
 import ru.yurizhi.math.Rect;
 import ru.yurizhi.pool.BulletPool;
+import ru.yurizhi.pool.ExplosionPool;
 
 public class Ship extends Sprite {
 
@@ -14,10 +15,14 @@ public class Ship extends Sprite {
     protected Vector2 v = new Vector2();
 
     protected BulletPool bulletPool;
+    protected ExplosionPool explosionPool;
     protected TextureRegion bulletRegion;
 
     protected float reloadInterval;
     protected float reloadTimer;
+
+    private float damageInterval = 0.1f;
+    private float damageTimer = damageInterval;
 
     protected Sound shootSound;
 
@@ -36,6 +41,15 @@ public class Ship extends Sprite {
     }
 
     @Override
+    public void update(float delta) {
+        super.update(delta);
+        damageTimer += delta;
+        if (damageTimer >= damageInterval) {
+            frame = 0;
+        }
+    }
+
+    @Override
     public void resize(Rect worldBounds) {
         super.resize(worldBounds);
         this.worldBounds = worldBounds;
@@ -47,7 +61,30 @@ public class Ship extends Sprite {
         bullet.set(this, bulletRegion, pos, bulletV, bulletHeight, worldBounds, damage);
     }
 
+    public void boom() {
+        Explosion explosion = explosionPool.obtain();
+        explosion.set(getHeight(), pos);
+    }
+
+    public void damage(int damage) {
+        frame = 1;
+        damageTimer = 0f;
+        hp -= damage;
+        if (hp <= 0) {
+            hp = 0;
+            destroy();
+        }
+    }
+
     public void dispose() {
         shootSound.dispose();
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getHp() {
+        return hp;
     }
 }

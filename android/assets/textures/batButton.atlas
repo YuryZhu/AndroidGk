@@ -1,0 +1,89 @@
+
+batButton.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+line
+  rotate: false
+  xy: 1, 574
+  size: 29, 1440
+  orig: 29, 1440
+  offset: 0, 0
+  index: -1
+batman-vs-superman
+  rotate: false
+  xy: 32, 1315
+  size: 430, 699
+  orig: 430, 699
+  offset: 0, 0
+  index: 1
+batman_exit1
+  rotate: false
+  xy: 32, 977
+  size: 438, 336
+  orig: 438, 336
+  offset: 0, 0
+  index: -1
+enemy0
+  rotate: false
+  xy: 32, 775
+  size: 400, 200
+  orig: 400, 200
+  offset: 0, 0
+  index: -1
+enemy2
+  rotate: false
+  xy: 32, 574
+  size: 400, 199
+  orig: 400, 199
+  offset: 0, 0
+  index: -1
+batman_play
+  rotate: false
+  xy: 1, 377
+  size: 400, 195
+  orig: 400, 195
+  offset: 0, 0
+  index: -1
+enemy1
+  rotate: false
+  xy: 1, 183
+  size: 384, 192
+  orig: 384, 192
+  offset: 0, 0
+  index: -1
+Bat-Silhouette
+  rotate: false
+  xy: 1, 53
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+luk
+  rotate: false
+  xy: 131, 84
+  size: 100, 97
+  orig: 100, 97
+  offset: 0, 0
+  index: -1
+bat
+  rotate: false
+  xy: 1, 1
+  size: 100, 50
+  orig: 100, 50
+  offset: 0, 0
+  index: -1
+enemy1_bullet
+  rotate: false
+  xy: 464, 1920
+  size: 30, 94
+  orig: 30, 94
+  offset: 0, 0
+  index: -1
+enemy0_bullet
+  rotate: false
+  xy: 233, 131
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1

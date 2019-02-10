@@ -9,3 +9,4 @@ public class BulletPool extends SpritesPool<Bullet> {
         return new Bullet();
     }
 }
+

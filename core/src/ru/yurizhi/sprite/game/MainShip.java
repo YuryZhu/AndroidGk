@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import ru.yurizhi.math.Rect;
 import ru.yurizhi.pool.BulletPool;
+import ru.yurizhi.pool.ExplosionPool;
 
 public class MainShip extends Ship {
 
@@ -19,23 +20,33 @@ public class MainShip extends Ship {
     private int leftPointer = INVALID_POINTER;
     private int rightPointer = INVALID_POINTER;
 
-    public MainShip(TextureAtlas atlas, BulletPool bulletPool) {
-        super(atlas.findRegion("batman-vs-superman"), 1, 1, 10);
+    public MainShip(TextureAtlas atlas, BulletPool bulletPool, ExplosionPool explosionPool, Rect worldBounds) {
+        super(atlas.findRegion("batman-vs-superman"), 1, 2, 2);
         this.bulletRegion = atlas.findRegion("Bat-Silhouette");
+        this.worldBounds = worldBounds;
         this.bulletPool = bulletPool;
+        this.explosionPool = explosionPool;
         this.reloadInterval = 0.2f;
         this.shootSound = Gdx.audio.newSound(Gdx.files.internal("sounds/laser.wav"));
-        setHeightProportion(0.4f);
+        setHeightProportion(0.5f);
         this.bulletV = new Vector2(0, 0.5f);
         this.bulletHeight = 0.02f;
         this.damage = 1;
+        startNewGame();
+    }
+
+
+    public void startNewGame() {
+        stop();
+        pos.x = worldBounds.pos.x;
         this.hp = 100;
+        flushDestroy();
     }
 
     @Override
     public void resize(Rect worldBounds) {
         super.resize(worldBounds);
-        setBottom(worldBounds.getBottom() + 0.02f);
+        setBottom(worldBounds.getBottom() + 0.05f);
     }
 
     @Override
@@ -129,6 +140,20 @@ public class MainShip extends Ship {
             }
         }
         return super.touchUp(touch, pointer);
+    }
+
+    public boolean isBulletCollision(Rect bullet) {
+        return !(bullet.getRight() < getLeft()
+                || bullet.getLeft() > getRight()
+                || bullet.getBottom() > pos.y
+                || bullet.getTop() < getBottom()
+        );
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        boom();
     }
 
     private void moveRight() {
