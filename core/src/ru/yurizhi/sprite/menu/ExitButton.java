@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import ru.yurizhi.math.Rnd;
 import ru.yurizhi.math.Rect;
+import ru.yurizhi.pool.ScaledTouchUpButton;
 
 
 public class ExitButton extends ScaledTouchUpButton {

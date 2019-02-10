@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import ru.yurizhi.math.Rect;
 import ru.yurizhi.screen.GameScreen;
+import ru.yurizhi.pool.ScaledTouchUpButton;
 
 
 public class StartButton extends ScaledTouchUpButton {
